@@ -10,7 +10,7 @@ An application property generator framework that validates your property values 
 
 - [Setup](#setup)
 - [Gradle Plugin configurations](#gradle-plugin-configurations)
-- [Why Propactive was developed? (Historical background)](#why-propactive-was-developed-historical-background)
+- [Why Propactive was developed? (Historical Background)](#why-propactive-was-developed-historical-background)
 - [Runtime Property Validation](#runtime-property-validation)
 - [Natively Supported Property Types](#natively-supported-property-types)
 - [Writing Your Own Custom Property Types](#writing-your-own-custom-property-types)
@@ -60,7 +60,7 @@ then have a look at the rest this guide.
 
 ## Gradle Plugin configurations:
 
-Proactive provides a plugin extension that allows you to specify the destination of the created application properties file,
+Propactive provides a plugin extension that allows you to specify the destination of the created application properties file,
 set the location of the implementation class, and/or specify which environments you want to generate application properties
 files for by default. 
 
@@ -76,7 +76,7 @@ propactive {
 }
 ```
 
-## Why Propactive was developed? (Historical background)
+## Why Propactive was developed? (Historical Background)
 
 [//]: # (TODO: convert to diagram when complete using "Google Draw"...)
 
@@ -84,8 +84,8 @@ In one of the places I worked in, a sum of the projects had a streamlined proces
 The application source code and deployment details (i.e. helm charts files, application properties, JKS files...etc.)
 were seperated in two different project repositories. This led to the following inconvenience:   
 
-- Duplication: both application project and deployment project are testing against expected properties such as checking for compulsory 
-  keys and typed values (i.e. if a values in an integer as excepted), since we do have several microservices within our stack,
+- Duplication: both application projects and deployment projects are testing against expected properties such as checking for compulsory 
+  keys and typed values (i.e. if a values in an integer as expected), since we do have several microservices within our stack,
   these types of tests were duplicated across several projects. 
 - Maintainability: Since we have multiple environments to deploy our application, we usually end up with many application 
   properties files. We also have a separate module to deploy the application locally (i.e. "dev" environment) and another
@@ -104,7 +104,7 @@ lead to unexpected downtime, and it is an issue we experienced in the past.
 **Therefore, Propactive was developed with the following requirements in mind:**
 - Eliminate the need to store multiple application properties files in deployment projects.
 - The ability to test/validate application properties files with a higher degree of accuracy and flexibility.
-- Reduce code duplication/maintenance by having a single source of truth for application property keys and concise way to define values.
+- Reduce code duplication/maintenance by having a single source of truth for application property keys and a concise way to define values.
 - Provide a set of commonly used property types for validation on runtime to reduce code boilerplate.
 
 ## Runtime Property Validation
@@ -129,10 +129,10 @@ app.web.server.url=http://www.nonprodland.com
 app.web.server.url=http://127.0.0.1/
 ```
 
-Usually, this is fine, but as you scale, have many environments, and dozens of application properties that has different
-values for each environment, it becomes more mundane and error-prone, not only you will need to define a constant for 
+Usually, this is fine, but as you scale, have many environments, and dozens of application properties that have different
+values for each environment, it becomes more mundane and error-prone, not only will you need to define a constant for 
 `app.web.server.url` to test your property values, and perhaps another constant to reference it on your application side, 
-you will also need to parse each file if you want to test if the URL value is of valid format, if such precision is required.
+you will also need to parse each file you want to test if the URL value is of valid format, if such precision is required.
 
 With Propactive, this could simply be written like so:
 ```kotlin
@@ -239,7 +239,7 @@ typed port number validation will occur at runtime. You can [see this code runni
 ## Working With Multiple Environments
 
 Working with multiple environments' means you will need a way to distinguish between different environment filenames and
-different environment values. Proactive provide you the option to define multiple environments per `ApplicationProperties`
+different environment values. Propactive provides you the option to define multiple environments per `ApplicationProperties`
 object and allows you to cascade multiple keys entries against a single value.  
 
 Below is an example with 4 environments where `stage` and `test` share the same values, but `prod` and `dev` have 
